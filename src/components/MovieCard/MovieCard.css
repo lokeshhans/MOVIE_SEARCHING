@@ -1,0 +1,24 @@
+.movie-wrapper{
+    display: flex;
+    background: whitesmoke;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem .3rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1rem 0 ;
+}
+.movie-img > img{
+    background: green;
+    border-radius: 10px;
+}
+.movie-title{
+    font-size: x-large; 
+}
+.movie-year{
+    font-size: larger;
+}
+.movie-type{
+    font-size: x-large;
+}
