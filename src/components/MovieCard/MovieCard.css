@@ -8,10 +8,16 @@
     border: 1px solid black;
     border-radius: 10px;
     margin: 1rem 0 ;
+    width: 25rem;
 }
 .movie-img > img{
     background: green;
     border-radius: 10px;
+    width: 20rem;
+    height: 30rem;
+    object-fit: cover; 
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 .movie-title{
     font-size: x-large; 

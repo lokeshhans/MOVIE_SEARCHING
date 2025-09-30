@@ -1,14 +1,28 @@
+import axios from 'axios'
 import MovieCard from '../components/MovieCard/MovieCard'
 import './Home.css'
+import {MovieSearch} from '../apis/MovieSearch'
+import { useEffect, useState } from 'react'
 function Home() {
+
+  const [movieList, setMovieList] = useState([])
+
+  async function downloadDefaultMovies(...args){
+    const urls = args.map(url => MovieSearch(url));
+    const requests = await axios.all(urls.map(url => axios.get(url)));
+    const allMovies = requests.map(movieResponse => movieResponse.data.Search);
+    console.log([].concat(...allMovies));
+    setMovieList([].concat(...allMovies));
+  }
+  useEffect(()=>{
+    downloadDefaultMovies('harry','spider','avengers')
+  },[]);
   return (
     <>
     {/* navbar */}
     {/*Movie List */}
     <div className="movie-card-wrapper">
-      <MovieCard Title={"Harry Potter and the Deathly Hallows: Part 2"} Year={2020} Type={"movie"} Poster={"https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_SX300.jpg"}/>
-      <MovieCard Title={"Harry Potter and the Deathly Hallows: Part 2"} Year={2020} Type={"movie"} Poster={"https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_SX300.jpg"}/>
-      <MovieCard Title={"Harry Potter and the Deathly Hallows: Part 2"} Year={2020} Type={"movie"} Poster={"https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_SX300.jpg"}/>
+      {movieList.length > 0 && movieList.map((movie)=><MovieCard  key={movie.imdbID} {...movie}/>)}
     </div>
     {/*Pagination Buttons */}
 </>

@@ -1,4 +1,3 @@
-import React from "react";
 import "./MovieCard.css";
 function MovieCard({ Title, Year, Type, Poster }) {
   return (
